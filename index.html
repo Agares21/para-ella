@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para ti 💗</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(135deg, #6c6c6c, #8b7d82, #d4a5b0);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: white;
+    }
+
+    .background-glow {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.12), transparent 70%);
+      border-radius: 50%;
+      animation: pulseGlow 5s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.18); opacity: 1; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      width: 90%;
+      max-width: 760px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 28px;
+      padding: 45px 30px;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+      animation: fadeUp 1.4s ease;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      margin-bottom: 12px;
+      animation: floatText 3s ease-in-out infinite;
+    }
+
+    @keyframes floatText {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: #ffeef2;
+      margin-bottom: 28px;
+      opacity: 0.95;
+    }
+
+    .message {
+      font-size: 1.15rem;
+      line-height: 1.85;
+      max-width: 620px;
+      margin: 0 auto 30px;
+    }
+
+    .highlight {
+      color: #ffd7df;
+      font-weight: 700;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 26px;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .btn-main {
+      background: #d8a7b1;
+      color: white;
+      box-shadow: 0 8px 20px rgba(216, 167, 177, 0.35);
+    }
+
+    .btn-main:hover {
+      transform: translateY(-3px) scale(1.03);
+      background: #c7929f;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.18);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .btn-secondary:hover {
+      transform: translateY(-3px) scale(1.03);
+      background: rgba(255,255,255,0.28);
+    }
+
+    .hidden-message {
+      margin-top: 28px;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.12);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: all 0.6s ease;
+      pointer-events: none;
+    }
+
+    .hidden-message.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      color: rgba(255, 220, 230, 0.8);
+      font-size: 20px;
+      animation: floatHeart linear forwards;
+      z-index: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-110vh) translateX(30px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .footer-note {
+      margin-top: 25px;
+      font-size: 0.95rem;
+      color: #fce7ed;
+      opacity: 0.9;
+    }
+
+    .sparkle {
+      display: inline-block;
+      animation: twinkle 1.6s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50% { transform: scale(1.25); opacity: 1; }
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        width: 94%;
+        padding: 16px;
+      }
+
+      .card {
+        padding: 34px 22px;
+        border-radius: 24px;
+      }
+
+      .message {
+        font-size: 1.02rem;
+        line-height: 1.75;
+      }
+
+      .buttons {
+        gap: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 20px 0;
+      }
+
+      .background-glow {
+        width: 320px;
+        height: 320px;
+      }
+
+      .container {
+        width: 94%;
+        padding: 12px;
+      }
+
+      .card {
+        padding: 28px 18px;
+        border-radius: 22px;
+      }
+
+      h1 {
+        font-size: clamp(2rem, 9vw, 2.8rem);
+        line-height: 1.1;
+      }
+
+      .subtitle {
+        font-size: 0.98rem;
+        margin-bottom: 20px;
+      }
+
+      .message {
+        font-size: 0.98rem;
+        line-height: 1.7;
+        margin-bottom: 24px;
+      }
+
+      .hidden-message {
+        font-size: 0.97rem;
+        line-height: 1.65;
+        padding: 16px;
+      }
+
+      .buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+
+      button {
+        width: 100%;
+        font-size: 0.98rem;
+        padding: 13px 18px;
+      }
+
+      .footer-note {
+        font-size: 0.9rem;
+        margin-top: 20px;
+      }
+
+      .heart {
+        font-size: 16px !important;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .card {
+        padding: 24px 15px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .subtitle,
+      .message,
+      .hidden-message {
+        font-size: 0.93rem;
+      }
+    }
+
+      .message {
+        font-size: 1rem;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="background-glow"></div>
+
+  <div class="container">
+    <div class="card">
+      <h1>Para ti 💗</h1>
+      <p class="subtitle">Solo quería regalarte un pequeño rincón bonito hoy <span class="sparkle">✨</span></p>
+
+      <div class="message">
+        Sé que quizá hoy no te sientes del todo bien, pero quería recordarte algo:
+        <br><br>
+        <span class="highlight">eres valiosa, importante y muy especial</span>.
+        <br><br>
+        Hay días pesados, sí... pero también hay personas que de verdad desean verte sonreír.
+        Y hoy, aunque sea un poquito, quería intentar alegrarte el corazón.
+      </div>
+
+      <div class="buttons">
+        <button class="btn-main" onclick="mostrarMensaje()">Abrir mensajito 💌</button>
+        <button class="btn-secondary" onclick="lluviaCorazones()">Más corazones 💗</button>
+      </div>
+
+      <div id="mensaje" class="hidden-message">
+        No tienes que poder con todo siempre.
+        Está bien descansar, respirar y tomarte tu tiempo.
+        <br><br>
+        Solo quería que supieras que <span class="highlight">mereces cosas bonitas</span>,
+        abrazos sinceros y días mucho más suaves.
+        <br><br>
+        Ojalá esta pequeña página te saque aunque sea una sonrisita 🌸
+      </div>
+
+      <p class="footer-note">Hecho con cariño, en tonos plomo y palo de rosa.</p>
+    </div>
+  </div>
+
+  <script>
+    function mostrarMensaje() {
+      document.getElementById('mensaje').classList.add('show');
+      lluviaCorazones();
+      explotarCorazones();
+    }
+
+    function crearCorazon() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.innerHTML = '❤';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.fontSize = (Math.random() * 18 + 16) + 'px';
+      heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 7000);
+    }
+
+    function lluviaCorazones() {
+      for (let i = 0; i < 18; i++) {
+        setTimeout(crearCorazon, i * 120);
+      }
+    }
+
+    setInterval(crearCorazon, 900);
+
+    function explotarCorazones() {
+      const total = 28;
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      for (let i = 0; i < total; i++) {
+        const heart = document.createElement('div');
+        heart.innerHTML = '❤';
+        heart.style.position = 'fixed';
+        heart.style.left = centerX + 'px';
+        heart.style.top = centerY + 'px';
+        heart.style.fontSize = (Math.random() * 16 + 18) + 'px';
+        heart.style.color = 'rgba(255, 220, 230, 0.95)';
+        heart.style.pointerEvents = 'none';
+        heart.style.zIndex = '999';
+
+        const angle = (Math.PI * 2 * i) / total;
+        const distance = 140 + Math.random() * 180;
+        const x = Math.cos(angle) * distance;
+        const y = Math.sin(angle) * distance;
+
+        heart.animate(
+          [
+            { transform: 'translate(-50%, -50%) scale(0.3)', opacity: 0 },
+            { transform: 'translate(-50%, -50%) scale(1.2)', opacity: 1, offset: 0.2 },
+            { transform: `translate(${x}px, ${y}px) scale(1)`, opacity: 0 }
+          ],
+          {
+            duration: 1600,
+            easing: 'cubic-bezier(0.22, 1, 0.36, 1)'
+          }
+        );
+
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 1700);
+      }
+    }
+  </script>
+</body>
+</html>
